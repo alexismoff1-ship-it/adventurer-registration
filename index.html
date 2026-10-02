@@ -13,7 +13,7 @@
             font-family: Georgia, serif;
             text-align: center;
             margin: 0;
-            padding-top: 100px;
+            padding-top: 70px;
             color: #8e237f;
         }
 
@@ -21,7 +21,7 @@
             width: 90%;
             max-width: 550px;
             margin: auto;
-            padding: 40px;
+            padding: 55px 40px;
             background: white;
             border: 3px solid #d46abf;
             border-radius: 20px;
@@ -30,7 +30,7 @@
 
         h1 {
             font-size: 38px;
-            margin-bottom: 5px;
+            margin-bottom: 10px;
         }
 
         h2 {
@@ -42,6 +42,7 @@
         p {
             color: #555;
             font-size: 18px;
+            line-height: 1.6;
         }
 
         input {
@@ -75,12 +76,23 @@
             min-height: 20px;
             margin-top: 10px;
         }
+
+        #verificationScreen {
+            display: none;
+        }
+
+        .player-name {
+            color: #b832a5;
+            font-weight: bold;
+        }
     </style>
 </head>
 
 <body>
 
-    <div class="box">
+    <!-- SCREEN 1: NAME ENTRY -->
+
+    <div class="box" id="registrationScreen">
 
         <h1>🌸 Lexie's First DM Adventure 🌸</h1>
 
@@ -107,23 +119,70 @@
 
     </div>
 
+
+    <!-- SCREEN 2: IDENTITY VERIFICATION -->
+
+    <div class="box" id="verificationScreen">
+
+        <h1>🌸 Thanks, <span id="displayName"></span>! 🌸</h1>
+
+        <h2>Player Registration Started</h2>
+
+        <p>
+            Your player registration has been started.
+        </p>
+
+        <p>
+            Just one last step!
+            <br>
+            We need to verify that you're really you.
+        </p>
+
+        <button onclick="beginVerification()">
+            BEGIN IDENTITY VERIFICATION
+        </button>
+
+    </div>
+
+
     <script>
+
         function registerPlayer() {
 
             const name =
                 document.getElementById("playerName").value.trim();
 
             if (name === "") {
+
                 document.getElementById("error").textContent =
                     "Please enter your name.";
+
                 return;
             }
 
             sessionStorage.setItem("playerName", name);
 
-            alert("Welcome, " + name + "!");
+            document.getElementById("displayName").textContent = name;
 
+            document.getElementById("registrationScreen").style.display =
+                "none";
+
+            document.getElementById("verificationScreen").style.display =
+                "block";
         }
+
+
+        function beginVerification() {
+
+            const name = sessionStorage.getItem("playerName");
+
+            alert(
+                "Identity verification for " +
+                name +
+                " will begin here."
+            );
+        }
+
 
         document
             .getElementById("playerName")
@@ -134,6 +193,7 @@
                 }
 
             });
+
     </script>
 
 </body>
