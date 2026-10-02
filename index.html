@@ -1,13 +1,141 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Player Registration</title>
+
+    <style>
+        body {
+            background-color: #fff0f7;
+            font-family: Georgia, serif;
+            text-align: center;
+            margin: 0;
+            padding-top: 100px;
+            color: #8e237f;
+        }
+
+        .box {
+            width: 90%;
+            max-width: 550px;
+            margin: auto;
+            padding: 40px;
+            background: white;
+            border: 3px solid #d46abf;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+
+        h1 {
+            font-size: 38px;
+            margin-bottom: 5px;
+        }
+
+        h2 {
+            font-size: 22px;
+            font-weight: normal;
+            margin-bottom: 35px;
+        }
+
+        p {
+            color: #555;
+            font-size: 18px;
+        }
+
+        input {
+            width: 80%;
+            padding: 15px;
+            margin-top: 10px;
+            font-size: 18px;
+            text-align: center;
+            border: 2px solid #d46abf;
+            border-radius: 10px;
+        }
+
+        button {
+            margin-top: 25px;
+            padding: 14px 35px;
+            font-size: 17px;
+            background-color: #b832a5;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #922483;
+        }
+
+        #error {
+            color: #c62828;
+            font-size: 14px;
+            min-height: 20px;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 
 <body>
-    <h1>Lexie's First DM Adventure</h1>
-    <h2>Player Registration</h2>
 
-    <p>Registration system online.</p>
+    <div class="box">
+
+        <h1>🌸 Lexie's First DM Adventure 🌸</h1>
+
+        <h2>Official Player Registration</h2>
+
+        <p>
+            Please enter your name to begin registration.
+        </p>
+
+        <input
+            type="text"
+            id="playerName"
+            placeholder="Enter your name"
+            autocomplete="off"
+        >
+
+        <br>
+
+        <button onclick="registerPlayer()">
+            BEGIN REGISTRATION
+        </button>
+
+        <div id="error"></div>
+
+    </div>
+
+    <script>
+        function registerPlayer() {
+
+            const name =
+                document.getElementById("playerName").value.trim();
+
+            if (name === "") {
+                document.getElementById("error").textContent =
+                    "Please enter your name.";
+                return;
+            }
+
+            sessionStorage.setItem("playerName", name);
+
+            alert("Welcome, " + name + "!");
+
+        }
+
+        document
+            .getElementById("playerName")
+            .addEventListener("keydown", function(event) {
+
+                if (event.key === "Enter") {
+                    registerPlayer();
+                }
+
+            });
+    </script>
+
 </body>
+
 </html>
