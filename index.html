@@ -2,200 +2,397 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Player Registration</title>
+<title>Player Registration</title>
 
-    <style>
-        body {
-            background-color: #fff0f7;
-            font-family: Georgia, serif;
-            text-align: center;
-            margin: 0;
-            padding-top: 70px;
-            color: #8e237f;
-        }
+<style>
 
-        .box {
-            width: 90%;
-            max-width: 550px;
-            margin: auto;
-            padding: 55px 40px;
-            background: white;
-            border: 3px solid #d46abf;
-            border-radius: 20px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
-        }
+    * {
+        box-sizing: border-box;
+    }
 
-        h1 {
-            font-size: 38px;
-            margin-bottom: 10px;
-        }
+    body {
+        background-color: #fff0f7;
+        font-family: Georgia, serif;
+        text-align: center;
+        margin: 0;
+        padding: 70px 20px;
+        color: #8e237f;
+    }
 
-        h2 {
-            font-size: 22px;
-            font-weight: normal;
-            margin-bottom: 35px;
-        }
+    .box {
+        width: 90%;
+        max-width: 550px;
+        margin: auto;
+        padding: 55px 40px;
+        background: white;
+        border: 3px solid #d46abf;
+        border-radius: 20px;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+    }
 
-        p {
-            color: #555;
-            font-size: 18px;
-            line-height: 1.6;
-        }
+    h1 {
+        font-size: 38px;
+        margin-bottom: 10px;
+    }
 
-        input {
-            width: 80%;
-            padding: 15px;
-            margin-top: 10px;
-            font-size: 18px;
-            text-align: center;
-            border: 2px solid #d46abf;
-            border-radius: 10px;
-        }
+    h2 {
+        font-size: 22px;
+        font-weight: normal;
+        margin-bottom: 35px;
+    }
 
-        button {
-            margin-top: 25px;
-            padding: 14px 35px;
-            font-size: 17px;
-            background-color: #b832a5;
-            color: white;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-        }
+    p {
+        color: #555;
+        font-size: 18px;
+        line-height: 1.6;
+    }
 
-        button:hover {
-            background-color: #922483;
-        }
+    input {
+        width: 80%;
+        padding: 15px;
+        margin-top: 10px;
+        font-size: 18px;
+        text-align: center;
+        border: 2px solid #d46abf;
+        border-radius: 10px;
+    }
 
-        #error {
-            color: #c62828;
-            font-size: 14px;
-            min-height: 20px;
-            margin-top: 10px;
-        }
+    button {
+        margin-top: 25px;
+        padding: 14px 35px;
+        font-size: 17px;
+        background-color: #b832a5;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+    }
 
-        #verificationScreen {
-            display: none;
-        }
+    button:hover {
+        background-color: #922483;
+    }
 
-        .player-name {
-            color: #b832a5;
-            font-weight: bold;
-        }
-    </style>
+    #error {
+        color: #c62828;
+        font-size: 14px;
+        min-height: 20px;
+        margin-top: 10px;
+    }
+
+    #verificationScreen,
+    #scannerScreen {
+        display: none;
+    }
+
+
+    /* PALM SCANNER */
+
+    .scanner-box {
+        width: 90%;
+        max-width: 620px;
+        margin: auto;
+        padding: 40px;
+        background: white;
+        border: 3px solid #d46abf;
+        border-radius: 20px;
+        box-shadow: 0 8px 30px rgba(180, 50, 165, 0.18);
+    }
+
+    .scanner-title {
+        font-size: 30px;
+        letter-spacing: 2px;
+        margin-bottom: 8px;
+    }
+
+    .player-label {
+        font-family: Arial, sans-serif;
+        font-size: 13px;
+        letter-spacing: 3px;
+        color: #9d5a92;
+        margin-bottom: 25px;
+    }
+
+    .scanner-instruction {
+        color: #555;
+        font-size: 18px;
+        line-height: 1.5;
+        margin-bottom: 25px;
+    }
+
+    .scanner {
+        position: relative;
+        width: 290px;
+        height: 360px;
+        margin: 20px auto 25px auto;
+
+        border: 3px solid #e05bc5;
+        border-radius: 28px;
+
+        background:
+            radial-gradient(
+                circle at center,
+                #fff8fc 0%,
+                #ffeaf6 70%,
+                #ffe0f2 100%
+            );
+
+        box-shadow:
+            0 0 20px rgba(224, 91, 197, 0.25),
+            inset 0 0 25px rgba(224, 91, 197, 0.10);
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        overflow: hidden;
+    }
+
+    .corner {
+        position: absolute;
+        width: 30px;
+        height: 30px;
+    }
+
+    .top-left {
+        top: 12px;
+        left: 12px;
+        border-top: 3px solid #c62cab;
+        border-left: 3px solid #c62cab;
+    }
+
+    .top-right {
+        top: 12px;
+        right: 12px;
+        border-top: 3px solid #c62cab;
+        border-right: 3px solid #c62cab;
+    }
+
+    .bottom-left {
+        bottom: 12px;
+        left: 12px;
+        border-bottom: 3px solid #c62cab;
+        border-left: 3px solid #c62cab;
+    }
+
+    .bottom-right {
+        bottom: 12px;
+        right: 12px;
+        border-bottom: 3px solid #c62cab;
+        border-right: 3px solid #c62cab;
+    }
+
+    .hand {
+        font-size: 175px;
+        opacity: 0.55;
+        filter:
+            grayscale(1)
+            sepia(1)
+            hue-rotate(260deg)
+            saturate(5);
+
+        user-select: none;
+    }
+
+    .status {
+        font-family: Arial, sans-serif;
+        font-weight: bold;
+        font-size: 16px;
+        letter-spacing: 3px;
+        color: #b832a5;
+
+        padding: 15px;
+
+        border-top: 1px solid #f1b5e4;
+        border-bottom: 1px solid #f1b5e4;
+    }
+
+    .protocol {
+        margin-top: 18px;
+        font-family: Arial, sans-serif;
+        font-size: 10px;
+        letter-spacing: 2px;
+        color: #c799be;
+    }
+
+</style>
 </head>
+
 
 <body>
 
-    <!-- SCREEN 1: NAME ENTRY -->
 
-    <div class="box" id="registrationScreen">
+<!-- SCREEN 1 -->
 
-        <h1>🌸 Lexie's First DM Adventure 🌸</h1>
+<div class="box" id="registrationScreen">
 
-        <h2>Official Player Registration</h2>
+    <h1>🌸 Lexie's First DM Adventure 🌸</h1>
 
-        <p>
-            Please enter your name to begin registration.
-        </p>
+    <h2>Official Player Registration</h2>
 
-        <input
-            type="text"
-            id="playerName"
-            placeholder="Enter your name"
-            autocomplete="off"
-        >
+    <p>
+        Please enter your name to begin registration.
+    </p>
 
+    <input
+        type="text"
+        id="playerName"
+        placeholder="Enter your name"
+        autocomplete="off"
+    >
+
+    <br>
+
+    <button onclick="registerPlayer()">
+        BEGIN REGISTRATION
+    </button>
+
+    <div id="error"></div>
+
+</div>
+
+
+
+<!-- SCREEN 2 -->
+
+<div class="box" id="verificationScreen">
+
+    <h1>
+        🌸 Thanks,
+        <span id="displayName"></span>! 🌸
+    </h1>
+
+    <h2>Player Registration Started</h2>
+
+    <p>
+        Your player registration has been started.
+    </p>
+
+    <p>
+        Just one last step!
         <br>
+        We need to verify that you're really you.
+    </p>
 
-        <button onclick="registerPlayer()">
-            BEGIN REGISTRATION
-        </button>
+    <button onclick="beginVerification()">
+        BEGIN IDENTITY VERIFICATION
+    </button>
 
-        <div id="error"></div>
+</div>
+
+
+
+<!-- SCREEN 3: PALM SCANNER -->
+
+<div class="scanner-box" id="scannerScreen">
+
+    <div style="font-size:24px; margin-bottom:12px;">
+        🌸
+    </div>
+
+    <div class="scanner-title">
+        IDENTITY VERIFICATION
+    </div>
+
+    <div class="player-label">
+        PLAYER:
+        <span id="scannerPlayerName"></span>
+    </div>
+
+    <div class="scanner-instruction">
+        Place your palm against the screen
+        <br>
+        and hold it in position.
+    </div>
+
+
+    <div class="scanner">
+
+        <div class="corner top-left"></div>
+        <div class="corner top-right"></div>
+        <div class="corner bottom-left"></div>
+        <div class="corner bottom-right"></div>
+
+        <div class="hand">
+            🖐
+        </div>
 
     </div>
 
 
-    <!-- SCREEN 2: IDENTITY VERIFICATION -->
-
-    <div class="box" id="verificationScreen">
-
-        <h1>🌸 Thanks, <span id="displayName"></span>! 🌸</h1>
-
-        <h2>Player Registration Started</h2>
-
-        <p>
-            Your player registration has been started.
-        </p>
-
-        <p>
-            Just one last step!
-            <br>
-            We need to verify that you're really you.
-        </p>
-
-        <button onclick="beginVerification()">
-            BEGIN IDENTITY VERIFICATION
-        </button>
-
+    <div class="status">
+        AWAITING BIOMETRIC INPUT
     </div>
 
+    <div class="protocol">
+        LEXIE'S FIRST DM ADVENTURE //
+        PLAYER VERIFICATION SYSTEM
+    </div>
 
-    <script>
+</div>
 
-        function registerPlayer() {
 
-            const name =
-                document.getElementById("playerName").value.trim();
 
-            if (name === "") {
+<script>
 
-                document.getElementById("error").textContent =
-                    "Please enter your name.";
+function registerPlayer() {
 
-                return;
-            }
+    const name =
+        document.getElementById("playerName").value.trim();
 
-            sessionStorage.setItem("playerName", name);
+    if (name === "") {
 
-            document.getElementById("displayName").textContent = name;
+        document.getElementById("error").textContent =
+            "Please enter your name.";
 
-            document.getElementById("registrationScreen").style.display =
-                "none";
+        return;
+    }
 
-            document.getElementById("verificationScreen").style.display =
-                "block";
+    sessionStorage.setItem("playerName", name);
+
+    document.getElementById("displayName").textContent =
+        name;
+
+    document.getElementById("registrationScreen").style.display =
+        "none";
+
+    document.getElementById("verificationScreen").style.display =
+        "block";
+}
+
+
+
+function beginVerification() {
+
+    const name =
+        sessionStorage.getItem("playerName");
+
+    document.getElementById("scannerPlayerName").textContent =
+        name.toUpperCase();
+
+    document.getElementById("verificationScreen").style.display =
+        "none";
+
+    document.getElementById("scannerScreen").style.display =
+        "block";
+}
+
+
+
+document
+    .getElementById("playerName")
+    .addEventListener("keydown", function(event) {
+
+        if (event.key === "Enter") {
+            registerPlayer();
         }
 
+    });
 
-        function beginVerification() {
+</script>
 
-            const name = sessionStorage.getItem("playerName");
-
-            alert(
-                "Identity verification for " +
-                name +
-                " will begin here."
-            );
-        }
-
-
-        document
-            .getElementById("playerName")
-            .addEventListener("keydown", function(event) {
-
-                if (event.key === "Enter") {
-                    registerPlayer();
-                }
-
-            });
-
-    </script>
 
 </body>
-
 </html>
