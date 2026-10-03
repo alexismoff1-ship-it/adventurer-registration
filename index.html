@@ -490,8 +490,49 @@ document
   const analytics = getAnalytics(app);
 const scanCommandRef = ref(database, "scanCommand");
 
+let firstScanLoad = true;
+
 onValue(scanCommandRef, (snapshot) => {
-    alert("REMOTE COMMAND RECEIVED");
+
+    // Ignore the command already stored in Firebase when the page first loads
+    if (firstScanLoad) {
+        firstScanLoad = false;
+        return;
+    }
+
+    const status = document.querySelector(".status");
+    const hand = document.querySelector(".hand");
+
+    // STEP 1
+    status.textContent = "PALM DETECTED";
+    hand.style.transition = "filter 0.5s ease, opacity 0.5s ease";
+    hand.style.filter = "drop-shadow(0 0 18px #ff4fd8)";
+    hand.style.opacity = "1";
+
+    // STEP 2
+    setTimeout(() => {
+        status.textContent = "CAPTURING BIOMETRIC DATA";
+        hand.style.filter = "drop-shadow(0 0 30px #ff4fd8)";
+    }, 1200);
+
+    // STEP 3
+    setTimeout(() => {
+        status.textContent = "ANALYZING BIOMETRIC SIGNATURE...";
+        hand.style.filter = "drop-shadow(0 0 12px #ff4fd8)";
+    }, 2800);
+
+    // STEP 4
+    setTimeout(() => {
+        const playerName =
+            sessionStorage.getItem("playerName") || "PLAYER";
+
+        status.textContent =
+            "IDENTITY CONFIRMED: " + playerName.toUpperCase();
+
+        hand.style.filter =
+            "drop-shadow(0 0 35px #ff4fd8)";
+    }, 4800);
+
 });
 
    
