@@ -573,27 +573,15 @@ scanLine.classList.add("active");
 hand.style.filter =
     "drop-shadow(0 0 35px #ff4fd8)";
 
-// SAY "IDENTITY CONFIRMED"
-const voiceMessage = new SpeechSynthesisUtterance("IDENTITY. CONFIRMED.");
-voiceMessage.rate = 0.65;
-voiceMessage.pitch = 0.35;
-voiceMessage.volume = 1;
 
-const voices = window.speechSynthesis.getVoices();
-
-const roboticVoice =
-    voices.find(v => v.name.includes("Microsoft David")) ||
-    voices.find(v => v.name.includes("Microsoft Mark")) ||
-    voices.find(v => v.lang.startsWith("en"));
-
-if (roboticVoice) {
-    voiceMessage.voice = roboticVoice;
-}
-
-window.speechSynthesis.speak(voiceMessage);
+// PLAY RECORDED ROBOT VOICE
+const identityAudio = new Audio("Identity confirmed.mp3");
+identityAudio.volume = 1;
+identityAudio.play();
 
 scanLine.classList.remove("active");
 }, 4800);
+
 });
 
    
