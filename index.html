@@ -599,8 +599,25 @@ identityAudio.play();
 identityAudio.addEventListener("ended", () => {
     setTimeout(() => {
         const blackout = document.getElementById("blackout");
+
+        // BLACK SCREEN
         blackout.classList.add("active");
+
+        // WAIT 5 SECONDS IN TOTAL DARKNESS
+        setTimeout(() => {
+
+            // LIGHTNING FLASH
+            blackout.classList.add("lightning");
+
+            // RETURN TO BLACK AFTER THE FLASH
+            setTimeout(() => {
+                blackout.classList.remove("lightning");
+            }, 120);
+
+        }, 5000);
+
     }, 3000);
+});
 });
 
 scanLine.classList.remove("active");
