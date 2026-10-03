@@ -570,12 +570,18 @@ scanLine.classList.add("active");
         status.textContent =
             "IDENTITY CONFIRMED: " + playerName.toUpperCase();
 
-    hand.style.filter =
+hand.style.filter =
     "drop-shadow(0 0 35px #ff4fd8)";
+
+// SAY "IDENTITY CONFIRMED"
+const voiceMessage = new SpeechSynthesisUtterance("Identity confirmed.");
+voiceMessage.rate = 0.85;
+voiceMessage.pitch = 0.8;
+voiceMessage.volume = 1;
+window.speechSynthesis.speak(voiceMessage);
 
 scanLine.classList.remove("active");
 }, 4800);
-
 });
 
    
