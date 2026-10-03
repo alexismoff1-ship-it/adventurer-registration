@@ -258,6 +258,23 @@
         color: #c799be;
     }
 
+/* BLACKOUT + LIGHTNING EFFECT */
+
+#blackout {
+    position: fixed;
+    inset: 0;
+    background: black;
+    z-index: 9999;
+    display: none;
+}
+
+#blackout.active {
+    display: block;
+}
+
+#blackout.lightning {
+    background: white;
+}   
 </style>
 </head>
 
@@ -579,6 +596,11 @@ const identityAudio = new Audio("Identity confirmed.mp3");
 identityAudio.volume = 1;
 identityAudio.play();
 
+identityAudio.addEventListener("ended", () => {
+    const blackout = document.getElementById("blackout");
+    blackout.classList.add("active");
+});
+
 scanLine.classList.remove("active");
 }, 4800);
 
@@ -586,6 +608,8 @@ scanLine.classList.remove("active");
 
    
 </script>
-
+   
+<div id="blackout"></div>
+   
 </body>
 </html>
