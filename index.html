@@ -597,8 +597,10 @@ identityAudio.volume = 1;
 identityAudio.play();
 
 identityAudio.addEventListener("ended", () => {
-    const blackout = document.getElementById("blackout");
-    blackout.classList.add("active");
+    setTimeout(() => {
+        const blackout = document.getElementById("blackout");
+        blackout.classList.add("active");
+    }, 3000);
 });
 
 scanLine.classList.remove("active");
