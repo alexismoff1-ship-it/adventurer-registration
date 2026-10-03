@@ -609,6 +609,10 @@ identityAudio.addEventListener("ended", () => {
             // LIGHTNING FLASH
             blackout.classList.add("lightning");
 
+           const thunderAudio = new Audio("thunder clap.mp3");
+thunderAudio.volume = 1;
+thunderAudio.play();
+           
             // RETURN TO BLACK AFTER THE FLASH
             setTimeout(() => {
                 blackout.classList.remove("lightning");
