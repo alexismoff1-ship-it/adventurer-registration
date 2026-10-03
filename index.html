@@ -538,6 +538,11 @@ onValue(scanCommandRef, (snapshot) => {
 
     const status = document.querySelector(".status");
     const hand = document.querySelector(".hand");
+   const scanLine = document.querySelector(".scan-line");
+
+scanLine.classList.remove("active");
+void scanLine.offsetWidth;
+scanLine.classList.add("active");
 
     // STEP 1
     status.textContent = "PALM DETECTED";
@@ -565,9 +570,11 @@ onValue(scanCommandRef, (snapshot) => {
         status.textContent =
             "IDENTITY CONFIRMED: " + playerName.toUpperCase();
 
-        hand.style.filter =
-            "drop-shadow(0 0 35px #ff4fd8)";
-    }, 4800);
+    hand.style.filter =
+    "drop-shadow(0 0 35px #ff4fd8)";
+
+scanLine.classList.remove("active");
+}, 4800);
 
 });
 
