@@ -10,5 +10,26 @@
 
     <button id="scanButton">START PALM SCAN</button>
 
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-database.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyCe3gaWSe8_1j2u7l4o8TJ6Xd6PGd6k6LU",
+authDomain: "adventure-registration.firebaseapp.com",
+databaseURL: "https://adventure-registration-default-rtdb.firebaseio.com",
+projectId: "adventure-registration",
+storageBucket: "adventure-registration.firebasestorage.app",
+messagingSenderId: "261690214405",
+appId: "1:261690214405:web:893b433a3f5089a220b46c"
+};
+    const app = initializeApp(firebaseConfig);
+const database = getDatabase(app);
+
+    document.getElementById("scanButton").addEventListener("click", function() {
+    set(ref(database, "scanCommand"), Date.now());
+});
+</script>
+    
 </body>
 </html>
